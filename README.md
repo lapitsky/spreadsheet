@@ -41,7 +41,9 @@ Deliverables
 Options:
 
 `-w show warnings`
+
 If `file` is not specified the application will read from **STDIN**. Warnings are printed to **STDERR**.
+
 ## Limitations
 * Cell addresses are assumed to be in the following format: `<Letter><Digit>+`. I.e. one letter followed by one or more digits
 * If some cell is referenced but it's beyond the entered values range it's considered to be zero
