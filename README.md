@@ -10,8 +10,8 @@ The output will be a CSV file of the same dimensions, where each cell is evaluat
 For example, the following CSV input:
 ```csv
 b1 b2 +,2 b2 3 * -,3 ,+
-a1,5 ,,72/
-c23*,12 , ,512+4*+3-
+a1     ,5         ,  ,72/
+c2 3 * ,1 2       ,  ,5 1 2 + 4 * + 3 -
 ```
 Might output something like this:
 ```csv
