@@ -23,13 +23,9 @@ func Evaluate(cs *cells.Cells, c *cells.Cell) cells.CellValue {
 		return c.Value
 	}
 
-	switch c.CycleState {
-	case cells.Pending:
+	if c.CycleState == cells.Pending {
 		c.CycleState = cells.Cycle
 		c.Value = cells.NewErrorValue("Cycle detected")
-		return c.Value
-	case cells.Cycle:
-		c.Value = cells.NewErrorValue("Cell refers to other cell with cycle detected")
 		return c.Value
 	}
 
