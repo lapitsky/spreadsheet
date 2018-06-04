@@ -37,7 +37,10 @@ Deliverables
 # Implementation report
 ## Execution
 `./spreadsheet [OPTIONS] [file]`
-` -w	show warnings`
+
+Options:
+
+`-w show warnings`
 If `file` is not specified the application will read from **STDIN**. Warnings are printed to **STDERR**.
 ## Limitations
 * Cell addresses are assumed to be in the following format: `<Letter><Digit>+`. I.e. one letter followed by one or more digits
