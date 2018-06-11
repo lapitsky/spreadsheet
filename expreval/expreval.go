@@ -18,6 +18,9 @@ var operations = map[byte]func(value1, value2 cells.CellValue) cells.CellValue{
 
 var validCellAddress = regexp.MustCompile(`^([a-zA-Z])([0-9]+)$`)
 
+// Evaluate performs arithmetic evaluation of a given cell by parsing
+// the cell expression and, if necessary,
+// recursively evaluating all the cells it depends upon.
 func Evaluate(cs *cells.Cells, c *cells.Cell) cells.CellValue {
 	if c.HasValue() {
 		return c.Value
@@ -109,7 +112,7 @@ func parseOperation(str string) (op byte, ok bool) {
 func parseCellRef(str string) (scol byte, row int, ok bool) {
 	if matches := validCellAddress.FindAllStringSubmatch(str, -1); matches != nil {
 		row, _ = strconv.Atoi(matches[0][2])
-		return matches[0][1][0], row - 1, true
+		return matches[0][1][0], row, true
 	}
 	return '-', -1, false
 }

@@ -32,6 +32,22 @@ func NewCells(records [][]string) *Cells {
 	return &cells
 }
 
+// At returns a cell for a one letter column name (sname)
+// and 1-based row number
+func (c *Cells) At(scol byte, row int) *Cell {
+	col := int(unicode.ToUpper(rune(scol)) - 'A')
+	if row <= len(c.Cells) && col < len(c.Cells[row-1]) {
+		return &c.Cells[row-1][col]
+	}
+	return &defaultCell
+}
+
+// HasValue returns true if Value is present, i.e. the cell has already
+// been initialized and false otherwise
+func (c *Cell) HasValue() bool {
+	return c.Value != nil
+}
+
 func (c *Cells) init(records [][]string) {
 	c.Cells = make([][]Cell, len(records))
 	for i := 0; i < len(c.Cells); i++ {
@@ -42,16 +58,4 @@ func (c *Cells) init(records [][]string) {
 			c.Cells[i][j].CycleState = Initial
 		}
 	}
-}
-
-func (c *Cells) At(scol byte, row int) *Cell {
-	col := int(unicode.ToUpper(rune(scol)) - 'A')
-	if row < len(c.Cells) && col < len(c.Cells[row]) {
-		return &c.Cells[row][col]
-	}
-	return &defaultCell
-}
-
-func (c *Cell) HasValue() bool {
-	return c.Value != nil
 }
